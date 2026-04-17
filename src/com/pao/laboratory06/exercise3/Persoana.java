@@ -1,6 +1,6 @@
 package com.pao.laboratory06.exercise3;
 
-abstract class Persoana {
+public abstract class Persoana {
     protected String nume;
     protected String prenume;
     protected String telefon;

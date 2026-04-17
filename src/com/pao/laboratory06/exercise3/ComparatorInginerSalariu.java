@@ -2,7 +2,6 @@ package com.pao.laboratory06.exercise3;
 
 import java.util.*;
 
-
 class ComparatorInginerSalariu implements Comparator<Inginer> {
     @Override
     public int compare(Inginer i1, Inginer i2) {
