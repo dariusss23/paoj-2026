@@ -9,7 +9,9 @@ public final class ComandaStandard extends Comanda {
     }
 
     @Override
-    public double pretFinal() { return pret; }
+    public double pretFinal() {
+        return pret;
+    }
 
     @Override
     public String descriere() {

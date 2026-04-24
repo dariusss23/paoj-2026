@@ -6,7 +6,9 @@ public final class ComandaGratuita extends Comanda {
     }
 
     @Override
-    public double pretFinal() { return 0.0; }
+    public double pretFinal() {
+        return 0.0;
+    }
 
     @Override
     public String descriere() {

@@ -10,10 +10,14 @@ public final class ComandaRedusa extends Comanda {
         this.discount = discount;
     }
 
-    public int getDiscount() { return discount; }
+    public int getDiscount() {
+        return discount;
+    }
 
     @Override
-    public double pretFinal() { return pret * (1 - discount / 100.0); }
+    public double pretFinal() {
+        return pret * (1 - discount / 100.0);
+    }
 
     @Override
     public String descriere() {

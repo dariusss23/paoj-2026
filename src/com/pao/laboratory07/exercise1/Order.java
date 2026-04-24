@@ -38,7 +38,7 @@ public class Order {
 
     public void undoState() throws CannotRevertInitialOrderStateException {
         if (history.isEmpty()) {
-            throw new CannotRevertInitialOrderStateException("Nu există stare anterioară pentru undo.");
+            throw new CannotRevertInitialOrderStateException("Nu exista stare anterioara pentru undo.");
         }
 
         currentState = history.pop();
