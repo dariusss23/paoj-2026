@@ -22,8 +22,6 @@
 
 ## 1.2 Lista cu tipuri de obiecte din domeniu
 
-Arhitectura sistemului reflecta conceptele fundamentale ale Programarii Orientate pe Obiecte, utilizand urmatoarele entitati de domeniu:
-
 - **Persoana** - clasa abstracta de baza pentru entitatile umane/fizice din sistem
 - **Client** - clasa abstracta derivata ce reprezinta un client generic al bancii
 - **ClientFizic** - reprezentarea unei persoane fizice (asociaza un CNP)
