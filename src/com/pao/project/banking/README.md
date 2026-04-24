@@ -5,8 +5,6 @@
 
 ## 1.1 Lista cu actiuni / interogari posibile in sistem
 
-Sistemul implementeaza un set de functionalitati de baza pentru gestionarea operatiunilor bancare, executabile prin intermediul aplicatiei demonstrative:
-
 1. Inregistrare clienti noi (persoane fizice sau juridice)
 2. Deschidere conturi noi pentru clienti (cont curent sau de economii)
 3. Emitere carduri bancare (de debit sau credit)
