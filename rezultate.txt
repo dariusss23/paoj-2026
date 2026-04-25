@@ -1,6 +1,4 @@
-Student{nume='Ana', varsta=19, adresa=Adresa{oras='Bucuresti', strada='Calea Victoriei'}}
 Student{nume='Mihai', varsta=22, adresa=Adresa{oras='Cluj', strada='Strada Marasesti'}}
 Student{nume='Elena', varsta=20, adresa=Adresa{oras='Iasi', strada='Bulevardul Independentei'}}
-Student{nume='Ion', varsta=17, adresa=Adresa{oras='Timisoara', strada='Strada Florilor'}}
 Student{nume='Maria', varsta=23, adresa=Adresa{oras='Brasov', strada='Strada Republicii'}}
 Student{nume='Andrei', varsta=21, adresa=Adresa{oras='Constanta', strada='Bulevardul Mamaia'}}
