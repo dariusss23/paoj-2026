@@ -1,16 +1,55 @@
 package com.pao.project.banking.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ClientFizic extends Client {
+public class ClientFizic extends Persoana implements Client {
 
-    private String cnp;
-    private LocalDate dataNasterii;
+    private static int contor = 1000;
 
-    public ClientFizic(String nume, String prenume, String telefon, String email, Adresa adresa, String cnp, LocalDate dataNasterii) {
-        super(nume, prenume, telefon, email, adresa);
-        this.cnp = cnp;
-        this.dataNasterii = dataNasterii;
+    private int idClient;
+    private List<Cont> conturi;
+    private boolean isStudent;
+
+    {
+        idClient = ++contor;
+        conturi = new ArrayList<>();
+        System.out.println("Client Fizic nou creat cu idClient = " + idClient);
+    }
+
+    public ClientFizic(String nume, String prenume, String cnp, LocalDate dataNasterii, String telefon, String email, Adresa adresa, boolean isStudent) {
+        super(nume, prenume, cnp, dataNasterii, telefon, email, adresa);
+        this.isStudent = isStudent;
+    }
+
+    @Override
+    public int getIdClient() {
+        return idClient;
+    }
+
+    @Override
+    public List<Cont> getConturi() {
+        return conturi;
+    }
+
+    @Override
+    public void adaugaCont(Cont cont) {
+        conturi.add(cont);
+    }
+
+    @Override
+    public void stergeContDupaIban(String iban) {
+        Cont contDeSters = null;
+        for (Cont c : conturi) {
+            if (c.getIban().equalsIgnoreCase(iban)) {
+                contDeSters = c;
+                break;
+            }
+        }
+        if (contDeSters != null) {
+            conturi.remove(contDeSters);
+        }
     }
 
     @Override
@@ -18,24 +57,34 @@ public class ClientFizic extends Client {
         return "Client Fizic";
     }
 
-    public String getCnp() {
-        return cnp;
+    public boolean isStudent() {
+        return isStudent;
     }
 
-    public void setCnp(String cnp) {
-        this.cnp = cnp;
-    }
-
-    public LocalDate getDataNasterii() {
-        return dataNasterii;
-    }
-
-    public void setDataNasterii(LocalDate dataNasterii) {
-        this.dataNasterii = dataNasterii;
+    public void setStudent(boolean student) {
+        isStudent = student;
     }
 
     @Override
     public String toString() {
-        return super.toString() + " | CNP: " + cnp + " | Nastere: " + dataNasterii;
+        return super.toString() +
+               " | CNP: " + getCnp() +
+               " | Nastere: " + getDataNasterii() +
+               " | ID Client: " + idClient +
+               " | Student: " + (isStudent ? "Da" : "Nu");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) 
+            return true;
+        if (!(o instanceof ClientFizic))
+            return false;
+        return this.idClient == ((ClientFizic) o).idClient;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(idClient);
     }
 }

@@ -62,16 +62,20 @@ public final class Tranzactie implements Comparable<Tranzactie> {
 
     @Override
     public int compareTo(Tranzactie other) {
-        return other.dataOra.compareTo(this.dataOra);
+        int rezultat = other.dataOra.compareTo(this.dataOra);
+        if (rezultat == 0) {
+            return other.idTranzactie.compareTo(this.idTranzactie);
+        }
+        return rezultat;
     }
 
     @Override
     public String toString() {
-        return "Tranzactie: " + idTranzactie + 
-               " | Tip: " + tip + 
-               " | Suma: " + suma + " RON" +
-               " | De la: " + ibanSursa + 
-               " | Catre: " + ibanDestinatie + 
-               " | Data: " + dataOra;
+        return "Tranzactie: " + idTranzactie +
+                " | Tip: " + tip +
+                " | Suma: " + suma + " RON" +
+                " | De la: " + ibanSursa +
+                " | Catre: " + ibanDestinatie +
+                " | Data: " + dataOra;
     }
 }

@@ -104,7 +104,7 @@ public class ClientService {
     public void afiseazaNumeClientiAlfabetic() {
         System.out.println("── Index Alfabetic Clienti ──");
         if (indexNumeClienti.isEmpty()) {
-            System.out.println("(nu exista clienti)");
+            System.out.println("(nu există clienti)");
         } else {
             for (String nume : indexNumeClienti) {
                 System.out.println("  " + nume);

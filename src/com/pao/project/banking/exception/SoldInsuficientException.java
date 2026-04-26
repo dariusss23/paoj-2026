@@ -5,7 +5,7 @@ public class SoldInsuficientException extends Exception {
     private final double sumaIncercata;
 
     public SoldInsuficientException(double soldDisponibil, double sumaIncercata) {
-        super(String.format("Sold insuficient! Disponibil: %.2f RON, Solicitat: %.2f RON", soldDisponibil, sumaIncercata));
+        super("Sold insuficient! Disponibil: " + soldDisponibil + " RON, Solicitat: " + sumaIncercata + " RON");
         this.soldDisponibil = soldDisponibil;
         this.sumaIncercata = sumaIncercata;
     }

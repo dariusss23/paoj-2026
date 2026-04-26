@@ -148,7 +148,7 @@ public class ContService {
 
     private static int contorIban = 1000;
     private String genereazaIban() {
-        return "RO49PAO0" + String.format("%016d", ++contorIban);
+        return "RO23PAO0" + String.format("%016d", ++contorIban);
     }
 
     private static int contorCard = 4000_0000;

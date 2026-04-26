@@ -10,22 +10,25 @@ public class Main {
 
     public static void main(String[] args) {
         ClientService clientService = ClientService.getInstance();
-        ContService   contService   = ContService.getInstance();
+        ContService contService = ContService.getInstance();
         AngajatService angajatService = AngajatService.getInstance();
 
         System.out.println("==================================");
-        System.out.println("SISTEM BANCAR - MAIN DEMONSTRATIV");
+        System.out.println("SISTEM BANCAR - DEMO");
         System.out.println("==================================");
 
         Adresa adr1 = new Adresa("Str. Florilor 12", "Ploiesti", "Prahova", "Romania");
         Adresa adr2 = new Adresa("Bd. Unirii 45", "Bucuresti", "Ilfov", "Romania");
         Adresa adr3 = new Adresa("Calea Victoriei 1", "Bucuresti", "Ilfov", "Romania");
 
-        Angajat angajat = new Angajat("Popescu", "Ion", "0721000001", "ion.popescu@banca.ro", adr3, "Consilier Clienti", 5500.0, "Retail");
+        Angajat angajat = new Angajat("Popescu", "Ion", "1800101123456", LocalDate.of(1980, 1, 1), "0721000001", "ion.popescu@banca.ro", adr3, "Consilier Clienti", 5500.0, "Retail");
         angajatService.adaugaAngajat(angajat);
 
-        ClientFizic cf1 = new ClientFizic("Ionescu", "Maria", "0740123456", "maria.ionescu@email.ro", adr1, "2901215290015", LocalDate.of(1990, 12, 15));
-        ClientJuridic cj1 = new ClientJuridic("TechRo SRL", "Georgescu", "Alexandru", "0730987654", "alex.georgescu@techro.ro", adr2, "RO12345678", "IT & Software");
+        Director director = new Director("Gheorghe", "Vasile", "1750202123456", LocalDate.of(1975, 2, 2), "0722111222", "vasile.gheorghe@banca.ro", adr2, "Director Sucursala", 12000.0, "Management", "Retail", 20000.0);
+        angajatService.adaugaAngajat(director);
+
+        ClientFizic cf1 = new ClientFizic("Ionescu", "Maria", "2901215290015", LocalDate.of(1990, 12, 15), "0740123456", "maria.ionescu@email.ro", adr1, false);
+        ClientJuridic cj1 = new ClientJuridic("TechRo", "RO12345678", ClientJuridic.TipFirma.SRL, "IT & Software", "Georgescu", "Alexandru", "0730987654", "alex.georgescu@techro.ro", adr2);
 
         System.out.println("==================================");
         System.out.println("1. INREGISTRARE CLIENTI NOI");
@@ -38,13 +41,13 @@ public class Main {
         System.out.println("2. DESCHIDERE CONTURI NOI PENTRU CLIENTI");
         System.out.println("==================================");
 
-        Cont contCurentCf1  = null;
+        Cont contCurentCf1 = null;
         Cont contEconomiiCf1 = null;
-        Cont contCurentCj1  = null;
+        Cont contCurentCj1 = null;
         try {
-            contCurentCf1   = contService.deschideCont(cf1, Cont.TipCont.CURENT,    "RON", 500.0);
-            contEconomiiCf1 = contService.deschideCont(cf1, Cont.TipCont.ECONOMII,  "RON", 2000.0);
-            contCurentCj1   = contService.deschideCont(cj1, Cont.TipCont.CURENT,    "RON", 10000.0);
+            contCurentCf1 = contService.deschideCont(cf1, Cont.TipCont.CURENT, "RON", 500.0);
+            contEconomiiCf1 = contService.deschideCont(cf1, Cont.TipCont.ECONOMII, "RON", 2000.0);
+            contCurentCj1 = contService.deschideCont(cj1, Cont.TipCont.CURENT, "RON", 10000.0);
         } catch (ClientNegasitException e) {
             System.err.println("Eroare: " + e.getMessage());
         }
@@ -170,7 +173,8 @@ public class Main {
         System.out.println("==================================");
 
         try {
-            if (contCurentCj1  != null) contService.stergeCont(contCurentCj1.getIban());
+            if (contCurentCj1 != null)
+                contService.stergeCont(contCurentCj1.getIban());
             clientService.stergeClient(cj1.getIdClient());
 
             System.out.println("Clienti ramasi: " + clientService.numarClienti());
@@ -185,5 +189,6 @@ public class Main {
         System.out.println("Angajati: " + angajatService.numarAngajati());
         System.out.println("Conturi totale: " + contService.listeazaToate().size());
         System.out.println(angajat);
+        System.out.println(director);
     }
 }

@@ -74,8 +74,10 @@ public class Cont {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Cont)) return false;
+        if (this == o) 
+            return true;
+        if (!(o instanceof Cont))
+            return false;
         return this.iban.equals(((Cont) o).iban);
     }
 

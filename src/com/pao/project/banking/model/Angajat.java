@@ -1,5 +1,5 @@
 package com.pao.project.banking.model;
-
+import java.time.LocalDate;
 
 public class Angajat extends Persoana {
 
@@ -15,8 +15,8 @@ public class Angajat extends Persoana {
         System.out.println("Angajat nou creat cu idAngajat = " + idAngajat);
     }
 
-    public Angajat(String nume, String prenume, String telefon, String email, Adresa adresa, String functie, double salariu, String departament) {
-        super(nume, prenume, telefon, email, adresa);
+    public Angajat(String nume, String prenume, String cnp, LocalDate dataNasterii, String telefon, String email, Adresa adresa, String functie, double salariu, String departament) {
+        super(nume, prenume, cnp, dataNasterii, telefon, email, adresa);
         this.functie = functie;
         this.salariu = salariu;
         this.departament = departament;
@@ -66,10 +66,11 @@ public class Angajat extends Persoana {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Angajat)) return false;
-        Angajat other = (Angajat) o;
-        return this.idAngajat == other.idAngajat;
+        if (this == o)
+            return true;
+        if (!(o instanceof Angajat))
+            return false;
+        return this.idAngajat == ((Angajat) o).idAngajat;
     }
 
     @Override
