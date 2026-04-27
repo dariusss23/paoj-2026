@@ -4,26 +4,70 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    private static final String OUTPUT_FILE = "output/lab09_ex1.ser";
-
     public static void main(String[] args) throws Exception {
-        // TODO: Implementează conform Readme.md
-        //
-        // 1. Citește N din stdin, apoi cele N tranzacții (id suma data contSursa contDestinatie tip)
-        // 2. Setează câmpul note = "procesat" pe fiecare tranzacție înainte de serializare
-        // 3. Serializează lista de tranzacții în OUTPUT_FILE cu ObjectOutputStream (try-with-resources)
-        // 4. Deserializează lista din OUTPUT_FILE cu ObjectInputStream (try-with-resources)
-        // 5. Procesează comenzile din stdin până la EOF:
-        //    - LIST          → afișează toate tranzacțiile, câte una pe linie
-        //    - FILTER yyyy-MM → afișează tranzacțiile cu data care începe cu yyyy-MM
-        //                       sau "Niciun rezultat." dacă nu există
-        //    - NOTE id        → afișează "NOTE[id]: <valoarea câmpului note>"
-        //                       sau "NOTE[id]: not found" dacă id-ul nu există
-        //
-        // Format linie tranzacție:
-        //   [id] data tip: suma RON | contSursa -> contDestinatie
-        //   Ex: [1] 2024-01-15 CREDIT: 1500.00 RON | RO01SRC1 -> RO01DST1
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("TODO: implementează exercițiul 1");
+        int n = scanner.nextInt();
+        List<Tranzactie> listaInitiala = new ArrayList<>();
+
+        for (int i=0; i<n; i++) {
+            int id = scanner.nextInt();
+            double suma = scanner.nextDouble();
+            String data = scanner.next();
+            String sursa = scanner.next();
+            String dest = scanner.next();
+            TipTranzactie tip = TipTranzactie.valueOf(scanner.next());
+
+            Tranzactie t = new Tranzactie(id, suma, data, sursa, dest, tip);
+            listaInitiala.add(t);
+        }
+
+        new File("output").mkdirs(); 
+        
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("output/lab09_ex1.ser"));
+        oos.writeObject(listaInitiala);
+        oos.close();
+
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("output/lab09_ex1.ser"));
+        List<Tranzactie> listaCitita = (List<Tranzactie>) ois.readObject();
+        ois.close();
+
+        while (scanner.hasNext()) {
+            String comanda = scanner.next();
+
+            if (comanda.equals("LIST")) {
+                for (Tranzactie t : listaCitita) {
+                    System.out.println(t);
+                }
+            } 
+            else if (comanda.equals("FILTER")) {
+                String luna = scanner.next();
+                boolean amGasitCeva = false;
+                for (Tranzactie t : listaCitita) {
+                    if (t.getData().startsWith(luna)) {
+                        System.out.println(t);
+                        amGasitCeva = true;
+                    }
+                }
+                if (!amGasitCeva) {
+                    System.out.println("Niciun rezultat.");
+                }
+            } 
+            else if (comanda.equals("NOTE")) {
+                int idCautat = scanner.nextInt();
+                boolean gasit = false;
+                for (Tranzactie t : listaCitita) {
+                    if (t.getId() == idCautat) {
+                        System.out.println("NOTE[" + idCautat + "]: " + t.getNote());
+                        gasit = true;
+                        break;
+                    }
+                }
+                if (!gasit) {
+                    System.out.println("NOTE[" + idCautat + "]: not found");
+                }
+            }
+        }
+        scanner.close();
     }
 }
