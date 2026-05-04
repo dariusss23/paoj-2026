@@ -19,6 +19,7 @@ public class Main {
             TipTranzactie tip = TipTranzactie.valueOf(scanner.next());
 
             Tranzactie t = new Tranzactie(id, suma, data, sursa, dest, tip);
+            t.setNote("procesat");
             listaInitiala.add(t);
         }
 
