@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        // Date de test hardcodate
         List<Tranzactie> lista = Arrays.asList(
             new Tranzactie(1, 1000.0, "2024-01-01", TipTranzactie.CREDIT, "CONT1"),
             new Tranzactie(2, 200.0,  "2024-01-05", TipTranzactie.DEBIT,  "CONT2"),
