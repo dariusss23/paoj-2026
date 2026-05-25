@@ -6,7 +6,7 @@ import com.pao.project.banking.service.*;
 
 import java.time.LocalDate;
 
-public class Main {
+public class MainEtapa1 {
 
     public static void main(String[] args) {
         ClientService clientService = ClientService.getInstance();

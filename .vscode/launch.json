@@ -6,7 +6,7 @@
         "srcPaths": [
             "src"
         ],
-//        "mainClass": "com.pao.laboratory06.Test",
+        //        "mainClass": "com.pao.laboratory06.Test",
         "classpath": [
             "lib/java-diff-utils-4.15.jar"
         ]

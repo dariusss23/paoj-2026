@@ -18,17 +18,26 @@ public final class Tranzactie implements Comparable<Tranzactie> {
     private final LocalDateTime dataOra;
     private final String descriere;
 
-    {
+    public Tranzactie(String ibanSursa, String ibanDestinatie, double suma, TipTranzactie tip, String descriere) {
         this.idTranzactie = "TRX-" + contorTranzactii;
         contorTranzactii++;
-    }
-
-    public Tranzactie(String ibanSursa, String ibanDestinatie, double suma, TipTranzactie tip, String descriere) {
+        
         this.ibanSursa = ibanSursa;
         this.ibanDestinatie = ibanDestinatie;
         this.suma = suma;
         this.tip = tip;
         this.dataOra = LocalDateTime.now();
+        this.descriere = descriere;
+    }
+
+    // CONSTRUCTOR 2: Folosit de Repository pentru a incarca datele din DB
+    public Tranzactie(String idTranzactie, String ibanSursa, String ibanDestinatie, double suma, TipTranzactie tip, LocalDateTime dataOra, String descriere) {
+        this.idTranzactie = idTranzactie; 
+        this.ibanSursa = ibanSursa;
+        this.ibanDestinatie = ibanDestinatie;
+        this.suma = suma;
+        this.tip = tip;
+        this.dataOra = dataOra;
         this.descriere = descriere;
     }
 

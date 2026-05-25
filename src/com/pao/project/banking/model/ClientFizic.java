@@ -23,6 +23,17 @@ public class ClientFizic extends Persoana implements Client {
         this.isStudent = isStudent;
     }
 
+    // CONSTRUCTOR 2: Pentru cand incarc un client EXISTENT din baza de date
+    public ClientFizic(int idClient, String nume, String prenume, String cnp, LocalDate dataNasterii, String telefon, String email, Adresa adresa, boolean isStudent) {
+        super(nume, prenume, cnp, dataNasterii, telefon, email, adresa);
+        this.idClient = idClient;
+        this.isStudent = isStudent;
+    }
+
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
+    }
+
     @Override
     public int getIdClient() {
         return idClient;

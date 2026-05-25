@@ -42,6 +42,10 @@ public class Card {
         return stare;
     }
 
+    public String getCVV() {
+        return cvv;
+    }
+
     public void setStare(StareCard stare) {
         this.stare = stare;
     }
